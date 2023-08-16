@@ -1,0 +1,47 @@
+<div class="w-full h-full flex flex-col overflow-y-scroll space-y-4">
+    <div class="w-full px-6 py-4 flex items-center justify-between space-x-4">
+        <div class="col-span-1 flex items-center gap-4">
+            <h2 class="text-2xl font-semibold text-gray-600">
+                Détails du client
+            </h2>
+        </div>
+        <button mat-icon-button color="warn" (click)="closeEvent.emit()">
+            <mat-icon svgIcon="heroicons_solid:x"></mat-icon>
+        </button>
+    </div>
+    <div
+        class="w-full h-full flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 px-6 pb-4"
+    >
+        <div class="col-span-1 w-full flex items-center space-x-2">
+            <span class="text-xl font-semibold">Prénom:</span>
+            <span class="text-xl">{{ client.prenom }}</span>
+        </div>
+        <div class="col-span-1 w-full flex items-center space-x-2">
+            <span class="text-xl font-semibold">Nom:</span>
+            <span class="text-xl">{{ client.nom }}</span>
+        </div>
+        <div class="col-span-1 w-full flex items-center space-x-2">
+            <span class="text-xl font-semibold">Téléphone:</span>
+            <span class="text-xl">{{ client.telephone }}</span>
+        </div>
+        <div class="col-span-1 w-full flex items-center space-x-2">
+            <span class="text-xl font-semibold">Email:</span>
+            <span class="text-xl">{{ client.email }}</span>
+        </div>
+        <div class="col-span-1 w-full flex items-center space-x-2">
+            <span class="text-xl font-semibold">CNI:</span>
+            <span class="text-xl">{{ client.cni }}</span>
+        </div>
+        <div class="col-span-1 w-full flex items-center space-x-2">
+            <span class="text-xl font-semibold">Sexe:</span>
+            <span class="text-xl">{{ client.sexe }}</span>
+        </div>
+        <div class="col-span-full flex flex-col space-y-4">
+            <h2 class="text-2xl font-semibold">Mesure client</h2>
+            <app-client-mesure-form
+                class="w-full h-full"
+                [client]="client"
+            ></app-client-mesure-form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+<div class="w-full h-full flex flex-col space-y-4">
+    <div class="w-full px-6 py-4 flex items-center justify-between space-x-4">
+        <div class="col-span-1 flex items-center gap-4">
+            <h2 class="text-2xl font-semibold text-gray-600">
+                {{ title }}
+            </h2>
+        </div>
+        <button mat-icon-button color="warn" (click)="onClose()">
+            <mat-icon svgIcon="heroicons_solid:x"></mat-icon>
+        </button>
+    </div>
+    <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+        <div class="w-full p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Prénom</mat-label>
+                <input type="text" matInput formControlName="prenom" />
+                <mat-error
+                    *ngIf="
+                        f.prenom.errors && (f.prenom.touched || f.prenom.durty)
+                    "
+                >
+                    Prénom obligatoire
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Nom</mat-label>
+                <input type="text" matInput formControlName="nom" />
+                <mat-error
+                    *ngIf="f.nom.errors && (f.nom.touched || f.nom.durty)"
+                >
+                    Nom obligatoire
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Téléphone</mat-label>
+                <input type="text" matInput formControlName="telephone" />
+                <mat-error
+                    *ngIf="
+                        f.telephone.errors &&
+                        (f.telephone.touched || f.telephone.durty)
+                    "
+                >
+                    Téléphone obligatoire
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" />
+                <mat-error
+                    *ngIf="f.email.errors && (f.email.touched || f.email.durty)"
+                >
+                    Email obligatoire erreur
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>CNI</mat-label>
+                <input type="text" matInput formControlName="cni" />
+                <mat-error
+                    *ngIf="f.cni.errors && (f.cni.touched || f.cni.durty)"
+                >
+                    CNI obligatoire
+                </mat-error>
+            </mat-form-field>
+
+            <mat-radio-group
+                class="col-span-1 w-full h-full flex items-center"
+                aria-label="Select sexe"
+                formControlName="sexe"
+            >
+                <mat-radio-button class="mr-4" value="HOMME"
+                    >Masculin</mat-radio-button
+                >
+                <mat-radio-button value="FEMME">Féminin</mat-radio-button>
+            </mat-radio-group>
+
+            <div class="col-span-full flex">
+                <button
+                    mat-raised-button
+                    [disabled]="clientForm.invalid"
+                    color="primary"
+                    class="min-w-60 text-white"
+                >
+                    Enregistrer
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

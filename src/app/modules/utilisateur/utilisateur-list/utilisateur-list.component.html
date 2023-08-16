@@ -1,0 +1,77 @@
+<div class="w-full h-full relative overflow-x-hidden">
+    <div class="w-full h-full flex flex-col space-y-4">
+        <div class="w-full px-6 py-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="col-span-1 flex items-center gap-4">
+                <h2 class="text-2xl font-semibold text-gray-600">
+                    Utilisateurs
+                </h2>
+            </div>
+            <div
+                class="col-span-1 flex justify-center md:justify-end items-center space-x-4"
+            >
+                <button
+                    mat-raised-button
+                    color="primary"
+                    class="text-white"
+                    (click)="onOpenForm()"
+                >
+                    <mat-icon
+                        svgIcon="mat_solid:person_add_alt_1"
+                        class="mr-2"
+                    ></mat-icon>
+                    <span>Ajouter</span>
+                </button>
+            </div>
+        </div>
+        <div class="relative overflow-x-auto" *ngIf="users$ | async as users">
+            <table class="w-full table-auto">
+                <!--Table head-->
+                <thead
+                    class="text-sm bg-gray-100 uppercase text-gray-400 dark:text-night-300"
+                >
+                    <tr>
+                        <th class="p-3 text-left">Username</th>
+                        <th class="p-3 text-left">Email</th>
+                        <th class="p-3 text-left">Role</th>
+                        <th class="p-3 text-left">Modifier</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        class="border-b text-sm text-gray-700 whitespace-nowrap border-dashed border-gray-200 dark:border-night-500"
+                        *ngFor="let user of users"
+                    >
+                        <td class="p-4">
+                            {{ user.username }}
+                        </td>
+                        <td class="p-4 font-semibold">{{ user.email }}</td>
+                        <td class="p-4 font-semibold">
+                            {{ user.role.libelle }}
+                        </td>
+                        <td class="p-4">
+                            <button mat-icon-button (click)="onOpenForm(user)">
+                                <mat-icon
+                                    class="icon-size-4 text-amber-500"
+                                    svgIcon="heroicons_solid:pencil"
+                                ></mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <fuse-drawer
+        class="w-160"
+        (openedChanged)="formOpened = $event"
+        [opened]="formOpened"
+        mode="over"
+        position="right"
+        ><app-utilisateur-form
+            class="w-full h-full"
+            [user]="userSelected"
+            (closeEvent)="onCloseForm($event)"
+            *ngIf="formOpened"
+        ></app-utilisateur-form
+    ></fuse-drawer>
+</div>

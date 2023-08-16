@@ -1,0 +1,125 @@
+<div class="w-full max-h-full pb-4">
+    <form [formGroup]="mesureForm" (ngSubmit)="onSave()">
+        <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Tête</mat-label>
+                <input type="number" matInput formControlName="tete" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Cou</mat-label>
+                <input type="number" matInput formControlName="cou" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Epaule</mat-label>
+                <input type="number" matInput formControlName="epaule" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Poitrine</mat-label>
+                <input type="number" matInput formControlName="poitrine" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Hanches</mat-label>
+                <input type="number" matInput formControlName="hanches" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Cuisse</mat-label>
+                <input type="number" matInput formControlName="cuisse" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Genou</mat-label>
+                <input type="number" matInput formControlName="genou" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Mollet</mat-label>
+                <input type="number" matInput formControlName="mollet" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Cheville</mat-label>
+                <input type="number" matInput formControlName="cheville" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Biceps</mat-label>
+                <input type="number" matInput formControlName="biceps" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Coude</mat-label>
+                <input type="number" matInput formControlName="coude" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Avant bras</mat-label>
+                <input type="number" matInput formControlName="avantBras" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Entre jambe</mat-label>
+                <input type="number" matInput formControlName="entreJambe" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Longueur bras</mat-label>
+                <input type="number" matInput formControlName="lBras" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Longueur corps</mat-label>
+                <input type="number" matInput formControlName="lCorps" />
+            </mat-form-field>
+            <mat-form-field class="col-span-1 w-full">
+                <mat-label>Hauteur total</mat-label>
+                <input type="number" matInput formControlName="hTotal" />
+            </mat-form-field>
+            <ng-container
+                *ngIf="client.sexe === 'FEMME'"
+                formGroupName="mesureFemme"
+            >
+                <mat-form-field class="col-span-1 w-full">
+                    <mat-label>Dessous poitrine</mat-label>
+                    <input
+                        type="number"
+                        matInput
+                        formControlName="dessousPoit"
+                    />
+                </mat-form-field>
+                <mat-form-field class="col-span-1 w-full">
+                    <mat-label>Crestes Iliaque</mat-label>
+                    <input
+                        type="number"
+                        matInput
+                        formControlName="crestesIliaque"
+                    />
+                </mat-form-field>
+                <mat-form-field class="col-span-1 w-full">
+                    <mat-label>Longueur dos</mat-label>
+                    <input type="number" matInput formControlName="ldos" />
+                </mat-form-field>
+            </ng-container>
+
+            <div class="col-span-full flex items-center space-x-4">
+                <button
+                    [disabled]="mesureForm.invalid || mesureForm.disabled"
+                    mat-flat-button
+                    color="primary"
+                >
+                    Enregistrer
+                </button>
+                <ng-container *ngIf="isEdit">
+                    <button
+                        *ngIf="mesureForm.disabled"
+                        type="button"
+                        (click)="mesureForm.enable()"
+                        mat-flat-button
+                        color="accent"
+                    >
+                        Modifier
+                    </button>
+                    <button
+                        *ngIf="mesureForm.enabled"
+                        type="button"
+                        (click)="cancel()"
+                        mat-flat-button
+                        color="warn"
+                    >
+                        Annuler
+                    </button>
+                </ng-container>
+            </div>
+        </div>
+    </form>
+</div>
